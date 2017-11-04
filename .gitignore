@@ -1,3 +1,4 @@
 vendor
 docker-compose.override.yml
 app/config/parameters.yml
+var
