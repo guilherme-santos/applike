@@ -52,3 +52,12 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host: '%amqp_host'
+            port: '%amqp_port'
+            user: '%amqp_user'
+            password: '%amqp_password'
+            vhost: '/'

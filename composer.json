@@ -19,6 +19,7 @@
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "incenteev/composer-parameter-handler": "^2.0",
+        "php-amqplib/rabbitmq-bundle": "^1.13",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "symfony/monolog-bundle": "^3.1.0",
@@ -61,7 +62,11 @@
                 "database_port": "APPLIKE_DATABASE_PORT",
                 "database_name": "APPLIKE_DATABASE_NAME",
                 "database_user": "APPLIKE_DATABASE_USER",
-                "database_password": "APPLIKE_DATABASE_PASSWORD"
+                "database_password": "APPLIKE_DATABASE_PASSWORD",
+                "amqp_host": "APPLIKE_AMQP_HOST",
+                "amqp_port": "APPLIKE_AMQP_PORT",
+                "amqp_user": "APPLIKE_AMQP_USER",
+                "amqp_password": "APPLIKE_AMQP_PASSWORD"
             }
         },
         "branch-alias": {

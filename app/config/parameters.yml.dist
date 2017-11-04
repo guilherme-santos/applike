@@ -8,5 +8,10 @@ parameters:
     database_user: root
     database_password: ~
 
+    amqp_host: 127.0.0.1
+    amqp_port: 5672
+    amqp_user: 'guest'
+    amqp_password: 'guest'
+
     # A secret key that's used to generate certain security-related tokens
     secret: 72468373077e03e76b0c733f0164c41f

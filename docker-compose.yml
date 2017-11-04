@@ -8,6 +8,7 @@ services:
       - APPLIKE_DATABASE_HOST=mysql
       - APPLIKE_DATABASE_NAME=applike_challenge
       - APPLIKE_DATABASE_PASSWORD=4ppl1k3
+      - APPLIKE_AMQP_HOST=rabbitmq
     ports:
       - 8000:8000
   mysql:
