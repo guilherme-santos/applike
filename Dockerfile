@@ -6,7 +6,7 @@ MAINTAINER Guilherme Silveira <xguiga@gmail.com>
 RUN apk add --no-cache icu-dev && \
     docker-php-ext-configure intl && \
     NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
-    docker-php-ext-install -j${NPROC} intl opcache pdo_mysql
+    docker-php-ext-install -j${NPROC} intl opcache pdo_mysql bcmath
 
 # Configuring PHP
 RUN echo -e "expose_php = Off;\n" \

@@ -92,7 +92,17 @@ class PersonController extends Controller
      */
     public function sendAction($id)
     {
-        $this->getPersonService()->send($id);
+        $sent = $this->getPersonService()->send($id);
+        if (!$sent) {
+            return $this->json([
+                'success' => false,
+                'error' => [
+                    'code' => 'not_found',
+                    'message' => sprintf('Not found people with id[%s]', $id),
+                ]
+            ], Response::HTTP_NOT_FOUND);
+        }
+
         return $this->json(['success' => true]);
     }
 

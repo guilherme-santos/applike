@@ -5,6 +5,7 @@ namespace AppBundle\Service;
 use AppBundle\Entity\PersonEntity;
 use AppBundle\Exception\APIException;
 use Doctrine\ORM\EntityManagerInterface;
+use OldSound\RabbitMqBundle\RabbitMq\Producer;
 
 class PersonService
 {
@@ -12,6 +13,11 @@ class PersonService
      * @var EntityManagerInterface
      */
     protected $entityManager;
+
+    /**
+     * @var Producer
+     */
+    protected $brokerProducer;
 
     /**
      * @param string $name
@@ -60,6 +66,20 @@ class PersonService
             'birthday' => $person->getBirthday()->format('Y-m-d'),
             'active' => $person->isActive(),
         ];
+    }
+
+    /**
+     * @param int $id
+     */
+    public function send($id)
+    {
+        $person = $this->getOne($id);
+        if (!$person) {
+            return false;
+        }
+
+        $this->getBrokerProducer()->publish(json_encode($person));
+        return true;
     }
 
     /**
@@ -114,6 +134,24 @@ class PersonService
     public function setEntityManager($entityManager)
     {
         $this->entityManager = $entityManager;
+        return $this;
+    }
+
+    /**
+     * @return Producer
+     */
+    public function getBrokerProducer()
+    {
+        return $this->brokerProducer;
+    }
+
+    /**
+     * @param Producer $brokerProducer
+     * @return PersonService
+     */
+    public function setBrokerProducer($brokerProducer)
+    {
+        $this->brokerProducer = $brokerProducer;
         return $this;
     }
 }

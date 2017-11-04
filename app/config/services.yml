@@ -36,3 +36,6 @@ services:
     AppBundle\Service\PersonService:
         calls:
             - [setEntityManager, ['@doctrine.orm.entity_manager']]
+            - [setBrokerProducer, ['@old_sound_rabbit_mq.person_producer']]
+
+    AppBundle\Service\PersonConsumerService:

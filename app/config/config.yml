@@ -56,8 +56,18 @@ doctrine:
 old_sound_rabbit_mq:
     connections:
         default:
-            host: '%amqp_host'
-            port: '%amqp_port'
-            user: '%amqp_user'
-            password: '%amqp_password'
+            host: '%amqp_host%'
+            port: '%amqp_port%'
+            user: '%amqp_user%'
+            password: '%amqp_password%'
             vhost: '/'
+    producers:
+        person:
+            connection: default
+            exchange_options: {name: 'people', type: direct}
+    consumers:
+        person:
+            connection: default
+            exchange_options: {name: 'people', type: direct}
+            queue_options: {name: 'people'}
+            callback: AppBundle\Service\PersonConsumerService
