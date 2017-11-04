@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  php:
+    build: .
+    image: applike/challenge:1.0.0
+    ports:
+      - 8000
+  mysql:
+    image: mysql:5
+    environment:
+      - MYSQL_DATABASE=applike_challenge
+      - MYSQL_ROOT_PASSWORD=4ppl1k3
+  rabbitmq:
+    image: rabbitmq:3.6-alpine
