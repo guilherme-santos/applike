@@ -4,8 +4,12 @@ services:
   php:
     build: .
     image: applike/challenge:1.0.0
+    environment:
+      - APPLIKE_DATABASE_HOST=mysql
+      - APPLIKE_DATABASE_NAME=applike_challenge
+      - APPLIKE_DATABASE_PASSWORD=4ppl1k3
     ports:
-      - 8000
+      - 8000:8000
   mysql:
     image: mysql:5
     environment:
