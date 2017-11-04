@@ -23,7 +23,6 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "symfony/monolog-bundle": "^3.1.0",
         "symfony/polyfill-apcu": "^1.0",
-        "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.3.*",
         "twig/twig": "^1.0||^2.0"
     },
@@ -32,8 +31,9 @@
         "symfony/phpunit-bridge": "^3.0"
     },
     "scripts": {
+        "build-parameters": "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
         "symfony-scripts": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "@build-parameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
@@ -55,7 +55,14 @@
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "database_host": "APPLIKE_DATABASE_HOST",
+                "database_port": "APPLIKE_DATABASE_PORT",
+                "database_name": "APPLIKE_DATABASE_NAME",
+                "database_user": "APPLIKE_DATABASE_USER",
+                "database_password": "APPLIKE_DATABASE_PASSWORD"
+            }
         },
         "branch-alias": {
             "dev-master": "3.3-dev"
