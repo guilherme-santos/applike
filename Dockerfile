@@ -6,7 +6,7 @@ MAINTAINER Guilherme Silveira <xguiga@gmail.com>
 RUN apk add --no-cache icu-dev && \
     docker-php-ext-configure intl && \
     NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
-    docker-php-ext-install -j${NPROC} intl opcache
+    docker-php-ext-install -j${NPROC} intl opcache pdo_mysql
 
 # Configuring PHP
 RUN echo -e "expose_php = Off;\n" \
@@ -39,4 +39,4 @@ RUN composer symfony-scripts
 
 EXPOSE 8000
 
-CMD ["php", "bin/console", "server:run", "0.0.0.0:8000"]
+CMD ["sh", "-c", "composer build-parameters && bin/console server:run 0.0.0.0:8000"]
